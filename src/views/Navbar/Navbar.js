@@ -1,7 +1,7 @@
 import { Link, Route, Routes } from "react-router-dom";
 import React from "react";
-import LoginForm from "../../components/User/LoginForm";
-import RegisterForm from "../../components/User/RegisterForm";
+import RegisterForm from "../../components/Register/RegisterForm";
+import {ListUser}  from "../../components/User/ListUser";
 
 const Navbar = () => {
   return (
@@ -11,10 +11,10 @@ const Navbar = () => {
           <div className="container mx-auto flex justify-center items-center">
             <div className="flex space-x-4">
               <Link
-                to="/login"
+                to="/list"
                 className="text-white hover:text-black focus:bg-green-400 focus:outline-none focus:ring-2 focus:ring-black-400 focus:ring-offset-2 px-3 py-2 rounded-md"
               >
-                Đăng nhập
+                Danh sách
               </Link>
               <Link
                 to="/register"
@@ -28,7 +28,7 @@ const Navbar = () => {
 
         <div className="pt-16">
           <Routes>
-            <Route path="/login" element={<LoginForm />} />
+            <Route path="/list" element={<ListUser />} />
             <Route path="/register" element={<RegisterForm />} />
           </Routes>
         </div>

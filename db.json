@@ -1,16 +1,12 @@
 {
   "posts": [
     {
-      "id": "7b7a",
-      "title": "wqweqe",
-      "description": "qweqweqw",
-      "views": 213123
-    },
-    {
-      "id": "1bca",
-      "title": "21312",
-      "description": "123123",
-      "views": 123123
+      "id": "175d",
+      "username": "ád",
+      "email": "terriesharleen1527@yahoo.com",
+      "password": "ăâêăâê",
+      "confirmPassword": "ăâêăâê"
     }
-  ]
+  ],
+  "register": []
 }
