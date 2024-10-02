@@ -1,77 +1,89 @@
-import apiLocal from '../../api/apiLocal';
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import apiLocal from "../../api/apiLocal";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export const ListUser = () => {
-    const [posts, setPosts] = useState([]);
+  const [users, setUsers] = useState([]);
 
-    useEffect(() => {
-        fetchLists();
-    }, []);
+  useEffect(() => {
+    fetchLists();
+  }, []);
 
-    const fetchLists = async () => {
-        try {
-            const response = await apiLocal.get('/posts');
-            setPosts(response.data);
-        } catch (error) {
-            console.error('Có lỗi: ', error);
-        }
-    };
+  const fetchLists = async () => {
+    try {
+      const response = await apiLocal.get("/posts");
+      setUsers(response.data);
+    } catch (error) {
+      console.error("Có lỗi: ", error);
+    }
+  };
 
-    const deletePost = async (id) => {
-        try {
-            await apiLocal.delete(`/posts/${id}`);
-            setPosts(posts.filter(post => post.id !== id));
-        } catch (error) {
-            console.error('Error deleting post:', error);
-        }
-    };
+  const deleteUser = async (id) => {
+    try {
+      await apiLocal.delete(`/posts/${id}`);
+      setUsers(users.filter((post) => post.id !== id));
+    } catch (error) {
+      console.error("Lỗi:", error);
+    }
+  };
 
-    return (
-        <div className="container mx-auto p-4">
-            <h1 className="text-3xl font-bold mb-4 text-center">Danh sách người dùng</h1>
-            <div className="flex justify-end mb-4">
-                <Link
-                    to="/register"
-                    className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
-                >
-                    Đăng ký
-                </Link>
-            </div>
-            <ul className="space-y-4">
-                {posts.length > 0 ? (
-                    posts.map(post => (
-                        <li
-                            key={post.id}
-                            className="bg-white p-4 shadow-md rounded flex justify-between items-center"
-                        >
-                            <div className="p-4 bg-gray-100 rounded-md shadow-md">
-                                <span className="block text-lg font-semibold text-blue-600 mb-2">User: {post.username}</span>
-                                <span className="block text-md font-medium text-gray-800 mb-2">Gmail: {post.email}</span>
-                                <span className="block text-sm font-normal text-gray-600">Password: {post.password}</span>
-                            </div>
-
-                            <div className="flex space-x-2">
-                                <Link
-                                    to={`/update/${post.id}`}
-                                    className="bg-yellow-400 text-white py-1 px-3 rounded hover:bg-yellow-500"
-                                >
-                                    Sửa
-                                </Link>
-                                <button
-                                    onClick={() => deletePost(post.id)}
-                                    className="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600"
-                                >
-                                    Xóa
-                                </button>
-                            </div>
-                        </li>
-                    ))
-                ) : (
-                    <li className="bg-white p-4 shadow-md rounded text-center">Không có bài viết để hiển thị</li>
-                )}
-            </ul>
+  return (
+    <div className="bg-gradient-to-r from-indigo-400 to-blue-500 min-h-screen p-8">
+      <div className="container mx-auto bg-white rounded-lg shadow-lg p-8">
+        <h1 className="text-4xl font-extrabold mb-6 text-center text-gray-800">
+          Danh sách người dùng
+        </h1>
+        <div className="flex justify-end mb-6">
+          <Link
+            to="/register"
+            className="bg-gradient-to-r from-green-400 to-green-500 text-white py-3 px-6 rounded-lg shadow hover:from-green-500 hover:to-green-600 transition-all"
+          >
+            Đăng ký người dùng mới
+          </Link>
         </div>
-    );
+        <div className="overflow-x-auto">
+          <ul className="space-y-6">
+            {users.length > 0 ? (
+              users.map((post) => (
+                <li
+                  key={post.id}
+                  className="bg-white p-6 shadow-lg rounded-md flex justify-between items-center transition-transform transform hover:-translate-y-2"
+                >
+                  <div>
+                    <span className="block text-xl font-bold text-indigo-600 mb-1">
+                      Tên người dùng: {post.username}
+                    </span>
+                    <span className="block text-md text-gray-700">
+                      Gmail: {post.email}
+                    </span>
+                    <span className="block text-sm text-gray-500">
+                      Mật khẩu: {post.password}
+                    </span>
+                  </div>
+                  <div className="flex space-x-4">
+                    <Link
+                      to={`/update/${post.id}`}
+                      className="bg-yellow-500 text-white py-2 px-4 rounded-lg shadow hover:bg-yellow-600 transition-all"
+                    >
+                      Sửa
+                    </Link>
+                    <button
+                      onClick={() => deleteUser(post.id)}
+                      className="bg-red-500 text-white py-2 px-4 rounded-lg shadow hover:bg-red-600 transition-all"
+                    >
+                      Xóa
+                    </button>
+                  </div>
+                </li>
+              ))
+            ) : (
+              <li className="text-center bg-gray-100 p-6 rounded-md shadow">
+                Không có người dùng để hiển thị
+              </li>
+            )}
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
 };
-
