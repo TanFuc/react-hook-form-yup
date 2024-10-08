@@ -16,13 +16,13 @@ const Navbar = () => {
                 to="/list"
                 className="text-white hover:bg-white hover:text-blue-900 transition-all duration-300 px-4 py-2 rounded-md border border-white"
               >
-                User List
+                Danh sách
               </Link>
               <Link
                 to="/register"
                 className="text-white hover:bg-white hover:text-blue-900 transition-all duration-300 px-4 py-2 rounded-md border border-white"
               >
-                Register
+                Đăng ký
               </Link>
             </div>
           </div>
